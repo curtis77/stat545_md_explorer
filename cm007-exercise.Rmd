@@ -64,7 +64,7 @@ gvsl + geom_point(aes(size = pop), alpha = 0.2) + scale_size_area()
 - Try adding `scale_radius()` and `scale_size_area()`. What's better?
 - Use `shape=21` to distinguish between `fill` (interior) and `colour` (exterior).
 ```{r}
-gvsl + geom_point(aes(size = pop), fill=continent, shape = 21,colour="black")
+gvsl + geom_point(aes(size = pop, fill=continent), shape = 21, colour="black")
 ```
 
 ## "Complete" plot
@@ -88,7 +88,11 @@ Let's see how Rwanda's life expectancy and GDP per capita have evolved over time
 - Try `geom_line()`. Try `geom_point()`.
 - Add `arrow=arrow()` option.
 - Add `geom_text`, with year label. 
-
+```{r}
+gapminder %>%
+  filter(country == "Rwanda") %>%
+  ggplot(aes(gdpPercap, lifeExp)) + geom_point() + geom_path(arrow=arrow())
+```
 
 ## Two categorical variables
 
@@ -97,7 +101,9 @@ Try `cyl` (number of cylinders) ~ `am` (transmission) in the `mtcars` data frame
 - Scatterplot? Jitterplot? No.
 - `geom_count()`.
 - `geom_bin2d()`. Compare with `geom_tile()` with `fill` aes.
-
+```{r}
+ggplot(mtcars, aes(factor(cyl), factor(am))) + geom_bin2d()
+```
 ## Overplotting
 
 Try a scatterplot with:
@@ -107,7 +113,11 @@ Try a scatterplot with:
 - `geom_density2d()`
 - `geom_smooth()`
 
-
+```{r}
+gvsl + geom_hex()
+gvsl + geom_density2d()
+gvsl + geom_smooth()
+```
 ## Bar plots
 
 How many countries are in each continent? Use the year 2007.

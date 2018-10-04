@@ -218,5 +218,12 @@ anti_join(flights2, weather, by = c("year","time_hour"))
 
 ### 2. Can we apply `set` and `binding` funcions between `flights2` and `weather` datasets. Why and why not?
 
+No, they do not have identical columns/variables.
 
-### 3. Let's create a tibble `p` with "x1" and "x2" coulmns and have duplicated element in "x1" column. Create another tibble `q` with "x1" and "x3" columns. Then apply `left_join` function `p` to `q` and `q` to `p`. 
+### 3. Let's create a tibble `p` with "x1" and "x2" columns and have duplicated element in "x1" column. Create another tibble `q` with "x1" and "x3" columns. Then apply `left_join` function `p` to `q` and `q` to `p`.
+```{r}
+(p <- tibble(x1 = 1, x2 = 1:2))
+(q <- tibble(x1 = 1:2, x3 = 1:2))
+left_join(p,q)
+left_join(q,p)
+```

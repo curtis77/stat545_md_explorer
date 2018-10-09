@@ -190,20 +190,25 @@ course
 2. Using the names function with `<-`. Also, just explore the names function.
 
 ```{r}
-
+names(course) <- c("subject", "code", "section")
+course
+names(course)
 ```
 
 3. Re-constructing the vector, specifying names within `c()`.
 
 ```{r}
-
+course <- c(subject="STAT", code = "545A", section = "S01")
+course
 ```
 
 
 Subset the entry labelled "section" and "subject". 
 
 ```{r}
-
+course["section"]
+course[["section"]]
+a <- c(a = 5, a = 6, b = 7)
 ```
 
 Amazingly, we can also subset by a vector of logicals (which will be recycled!). Let's work with our integer sequence vector again:
@@ -211,6 +216,7 @@ Amazingly, we can also subset by a vector of logicals (which will be recycled!).
 ```{r}
 (a <- 7:-2)
 (n <- length(a))
+a[a > 0]
 ```
 
 ## Lists
@@ -220,7 +226,7 @@ Unlike vectors, which are atomic/homogeneous, a list in R is heterogeneous.
 Try storing the course code (`"STAT"` and `545`) again, but this time in a list. Use the `list()` function.
 
 ```{r}
-
+(course <- list("STAT", 545))
 ```
 
 
@@ -234,13 +240,16 @@ Lists can hold pretty much anything, and can also be named. Let's use the follow
 Subsetting a list works similarly to vectors. Try subsetting the first element of `my_list`; try subsettig the first _component_ of the list. Notice the difference!
 
 ```{r}
-
+my_list[2]
+my_list[[2]]
 ```
 
 Try also subsetting by name:
 
 ```{r}
-
+my_list["year"]
+my_list[["year"]]
+my_list$year
 ```
 
 Smells a little like `data.frame`s. It turns out a `data.frame` is a special type of list:
